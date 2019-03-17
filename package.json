@@ -2,7 +2,14 @@
   "name": "fake-news",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=6"
+  },
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
+    "express": "^4.15.4",
+    "lodash": "^4.17.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8"

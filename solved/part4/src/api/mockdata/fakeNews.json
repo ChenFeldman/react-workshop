@@ -1,0 +1,26 @@
+[
+  {
+    "id" : 1,
+    "source" : "chenfeldmn@gmail.com",
+    "title" : "title test",
+    "description" : "fake news details fake news details fake news details fake news details fake news details"
+  },
+  {
+    "id" : 2,
+    "source" : "test1@test.com",
+    "title" : "title test2",
+    "description" : "fake news details fake news details fake news details fake news details fake news details"
+  },
+  {
+    "id" : 3,
+    "source" : "test2@test.com",
+    "title" : "title test3",
+    "description" : "fake news details fake news details fake news details fake news details fake news details"
+  },
+  {
+    "id" : 4,
+    "source" : "test3@test.com",
+    "title" : "title test4",
+    "description" : "fake news details fake news details fake news details fake news details fake news details"
+  }
+]
