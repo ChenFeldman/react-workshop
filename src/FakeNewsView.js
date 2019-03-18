@@ -3,19 +3,19 @@
 import React, { Component } from 'react';
 import {NEWS_PROP_TYPE} from './FakeNewsPropType';
 
-export default class FakeNewsView extends Component{
+export const FakeNewsView = ({fakeNews}) => {
+    let component = null;
 
-    static propTypes = {
-        fakeNews : NEWS_PROP_TYPE.isRequired
-    }
-
-    render(){
+    if (fakeNews){
         return (
             <div className='news-view'>
-                <span >{this.props.fakeNews.source}</span>
-                <h2 >{this.props.fakeNews.title}</h2>
-                <span >{this.props.fakeNews.description}</span>
+                <span >{fakeNews.source}</span>
+                <h2 >{fakeNews.title}</h2>
+                <span >{fakeNews.description}</span>
             </div>
-        )
+        );
     }
+
+    return component;
+
 }

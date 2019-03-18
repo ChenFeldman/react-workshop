@@ -1,68 +1,24 @@
-import React, { Component } from 'react';
-import './App.css';
-import './FakeNewsList';
-import FakeNewsList from "./FakeNewsList";
-import FakeNewsView from './FakeNewsView';
-import FakeNewsSubmitForm from './FakeNewsSubmitForm';
+import React, {Component} from 'react';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
 
-class App extends Component {
+import AppPageComponent from './AppPageComponent';
 
-    constructor(props) {
-        super(props);
+import {news} from './reducers';
 
-        this.state = {
-            selectedItemId: 1,
-            news: [{id : 1 ,source:'a@b.com', title:'',description:''}]
-        }
+const store = createStore(news,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(thunk));
 
-    }
-
-    componentDidMount() {
-        this._getUpdateNews();
-
-        this._pollId = setInterval(
-            () => this._getUpdateNews(),
-            3000
-        );
-    }
-
-    componentWillUnmount() {
-        clearInterval(this._pollId);
-    }
-
-    _getUpdateNews = () => {
-        return fetch('//localhost:5050/news')
-            .then(res => res.json())
-            .then(news => this.setState({news}))
-            .catch(ex => console.error(ex));
-    }
-
-    _handleFormSubmit = (newNews) => {
-        this.setState({
-            news: [
-                newNews,
-                ...this.state.news
-            ]
-        })
-    }
-
-    onNewsItemClicked = (id) => {
-        this.setState({selectedItemId: id});
-    }
-
+export default class App extends Component {
     render() {
         return (
-            <div className="App">
-                <div className='news-form'>
-                    <FakeNewsSubmitForm onSubmit={this._handleFormSubmit}/>
-                </div>
-                <FakeNewsList news={this.state.news} handleClick={this.onNewsItemClicked}/>
-                <FakeNewsView fakeNews={
-                    this.state.news.find(item => item.id === this.state.selectedItemId)}
-                />
-            </div>
+            <Provider store={store}>
+                <AppPageComponent pollInterval={4000} />
+            </Provider>
         );
     }
 }
 
-export default App;
+
